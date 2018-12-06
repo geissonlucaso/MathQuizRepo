@@ -25,9 +25,13 @@ namespace MathQuiz
         //Create a Rondom object called randomizer to generate random numbers.
         Random randomizer = new Random();
 
-        //This interger variables store the numbers for addition problem.
+        //This integer variables store the numbers for addition problem.
         int addend1;
         int addend2;
+
+        //This integer variables store the numbers fo subtraction problem.
+        int minuend;
+        int subtrahend;
 
         //This integer variable  keeps track of the ramaining time.
         int timeLeft;
@@ -38,6 +42,7 @@ namespace MathQuiz
         /// </summary>
         public void StartTheQuiz()
         {
+            //ADDITION
             //Fill in the addition problem.
             //Generate two random numbers to add.
             //Store the values in the variables "addend1" and "addend2".
@@ -53,6 +58,14 @@ namespace MathQuiz
             // adding any values to it.
             sum.Value = 0;
 
+            //SUBTRACTION
+            //Fill in the subtraction problem.
+            minuend = randomizer.Next(1, 101);
+            subtrahend = randomizer.Next(1, minuend);
+            minusLeftLabel.Text = minuend.ToString();
+            minusRightLabel.Text = subtrahend.ToString();
+            difference.Value = 0;
+
             //Start the timer.
             timeLeft = 30;
             timeLabel.Text = "30 seconds";
@@ -67,7 +80,8 @@ namespace MathQuiz
         /// <returns> True if the answer is correct, False otherwise </returns>
         private bool CheckTheAnswer()
         {
-            if (addend1 + addend2 == sum.Value)
+            if ((addend1 + addend2 == sum.Value) && 
+                (minuend - subtrahend == difference.Value))
                 return true;
             else
                 return false;
@@ -110,6 +124,7 @@ namespace MathQuiz
                 timeLabel.Text = "Time's up!";
                 MessageBox.Show("You didin't finish in the time.", "Sorry!");
                 sum.Value = addend1 + addend2;
+                difference.Value = minuend - subtrahend;
                 startButton.Enabled = true;
             }
         }
