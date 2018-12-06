@@ -25,13 +25,21 @@ namespace MathQuiz
         //Create a Rondom object called randomizer to generate random numbers.
         Random randomizer = new Random();
 
-        //This integer variables store the numbers for addition problem.
+        // These integer variables store the numbers for addition problem.
         int addend1;
         int addend2;
 
-        //This integer variables store the numbers fo subtraction problem.
+        // These integer variables store the numbers for subtraction problem.
         int minuend;
         int subtrahend;
+
+        // These integer variables store the numbers for multiplication problem.
+        int multiplicand;
+        int multiplier;
+
+        // These integer variables store the numbers for division problem.
+        int dividend;
+        int divisor;
 
         //This integer variable  keeps track of the ramaining time.
         int timeLeft;
@@ -66,6 +74,23 @@ namespace MathQuiz
             minusRightLabel.Text = subtrahend.ToString();
             difference.Value = 0;
 
+            //MULTIPLICATION
+            //Fill in the multiplication problem.
+            multiplicand = randomizer.Next(2, 11);
+            multiplier = randomizer.Next(2, 11);
+            timesLeftLabel.Text = multiplicand.ToString();
+            timesRightLabel.Text = multiplier.ToString();
+            product.Value = 0;
+
+            //DIVISION
+            //Fill in the division problem.
+            divisor = randomizer.Next(2, 11);
+            int temporaryQuocient = randomizer.Next(2, 11);
+            dividend = divisor * temporaryQuocient;
+            dividedLeftLabel.Text = dividend.ToString();
+            dividedRightLabel.Text = divisor.ToString();
+            quotient.Value = 0;
+
             //Start the timer.
             timeLeft = 30;
             timeLabel.Text = "30 seconds";
@@ -80,8 +105,10 @@ namespace MathQuiz
         /// <returns> True if the answer is correct, False otherwise </returns>
         private bool CheckTheAnswer()
         {
-            if ((addend1 + addend2 == sum.Value) && 
-                (minuend - subtrahend == difference.Value))
+            if ((addend1 + addend2 == sum.Value) &&
+                (minuend - subtrahend == difference.Value) &&
+                (multiplicand * multiplier == product.Value) &&
+                (dividend / divisor == quotient.Value))
                 return true;
             else
                 return false;
@@ -125,6 +152,8 @@ namespace MathQuiz
                 MessageBox.Show("You didin't finish in the time.", "Sorry!");
                 sum.Value = addend1 + addend2;
                 difference.Value = minuend - subtrahend;
+                product.Value = multiplicand * multiplier;
+                quotient.Value = dividend / divisor;
                 startButton.Enabled = true;
             }
         }
