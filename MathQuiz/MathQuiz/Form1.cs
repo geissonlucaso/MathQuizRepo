@@ -131,11 +131,19 @@ namespace MathQuiz
                 //If the CheckTheAnswer() returns true, then the use got the answer right. Stop the timer and show 
                 //the MessageBox.
                 timer1.Stop();
+                Console.Beep();
                 MessageBox.Show("You got all the answers right!", "Congratulations!");
+                timeLabel.BackColor = Control.DefaultBackColor;
                 startButton.Enabled = true;
             }
             else if (timeLeft > 0)
             {
+                //Check if time is less than or iqual 5. Then, the timeLeft color changes to Red.
+                if (timeLeft <= 20)
+                {
+                    timeLabel.BackColor = Color.Red;
+                }
+
                 // If CheckTheAnswer() return false, keep counting
                 // down. Decrease the time left by one second and 
                 // display the new time left by updating the 
@@ -154,6 +162,7 @@ namespace MathQuiz
                 difference.Value = minuend - subtrahend;
                 product.Value = multiplicand * multiplier;
                 quotient.Value = dividend / divisor;
+                timeLabel.BackColor = Control.DefaultBackColor;
                 startButton.Enabled = true;
             }
         }
