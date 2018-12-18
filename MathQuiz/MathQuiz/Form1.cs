@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MathQuiz
@@ -133,7 +127,7 @@ namespace MathQuiz
                 timer1.Stop();
                 Console.Beep();
                 MessageBox.Show("You got all the answers right!", "Congratulations!");
-                timeLabel.BackColor = Control.DefaultBackColor;
+                timeLabel.BackColor = DefaultBackColor;
                 startButton.Enabled = true;
             }
             else if (timeLeft > 0)
@@ -162,7 +156,7 @@ namespace MathQuiz
                 difference.Value = minuend - subtrahend;
                 product.Value = multiplicand * multiplier;
                 quotient.Value = dividend / divisor;
-                timeLabel.BackColor = Control.DefaultBackColor;
+                timeLabel.BackColor = DefaultBackColor;
                 startButton.Enabled = true;
             }
         }
